@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Wareside · Hertfordshire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f5f0e8;
+    --parchment: #e8dfc8;
+    --forest: #2d4a2d;
+    --moss: #4a6741;
+    --gold: #b8924a;
+    --bronze: #8b6914;
+    --ink: #1a1a14;
+    --mist: #6b7a6b;
+    --stone: #9a9080;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Raleway', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--forest);
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://christophersomerville.co.uk/wp-content/uploads/2020/10/Wareside-in-the-Ash-valley-scaled.jpg');
+    background-size: cover;
+    background-position: center 60%;
+    opacity: 0.45;
+    transform: scale(1.05);
+    animation: heroZoom 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroZoom {
+    from { transform: scale(1.05); }
+    to   { transform: scale(1.12); }
+  }
+
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(20,35,20,0.3) 0%, rgba(20,35,20,0.7) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    padding: 2rem;
+    animation: fadeUp 1.2s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    color: var(--parchment);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    opacity: 0.85;
+  }
+
+  .hero-meta {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--stone);
+    text-transform: uppercase;
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--parchment);
+    opacity: 0.6;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: bounce 2s ease infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(8px); }
+  }
+
+  .scroll-cue svg { width: 20px; height: 20px; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--forest);
+    border-bottom: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  nav::-webkit-scrollbar { display: none; }
+
+  nav a {
+    text-decoration: none;
+    color: var(--parchment);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 1rem 1.2rem;
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
+    border-right: 1px solid rgba(184,146,74,0.2);
+  }
+
+  nav a:last-child { border-right: none; }
+  nav a:hover { color: var(--gold); background: rgba(255,255,255,0.04); }
+
+  /* ─── SHARED SECTION HELPERS ─── */
+  .section-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 2rem auto;
+  }
+
+  /* ─── INTRO ─── */
+  .intro {
+    max-width: 760px;
+    margin: 5rem auto;
+    padding: 0 2rem;
+    text-align: center;
+  }
+
+  .intro h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.25;
+    margin-bottom: 1.5rem;
+  }
+
+  .intro p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--mist);
+    font-weight: 300;
+  }
+
+  /* ─── TIMELINE ─── */
+  #history {
+    background: var(--ink);
+    padding: 5rem 2rem;
+  }
+
+  #history .section-label { color: var(--gold); }
+
+  #history h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    color: var(--cream);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-sub {
+    text-align: center;
+    color: var(--stone);
+    font-size: 0.85rem;
+    font-weight: 300;
+    margin-bottom: 4rem;
+  }
+
+  .timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--gold) 10%, var(--gold) 90%, transparent);
+    transform: translateX(-50%);
+  }
+
+  .t-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 2.5rem;
+    margin-bottom: 3.5rem;
+    position: relative;
+  }
+
+  .t-item:nth-child(odd)  { flex-direction: row; }
+  .t-item:nth-child(even) { flex-direction: row-reverse; }
+
+  .t-date {
+    flex: 0 0 calc(50% - 2rem);
+    text-align: right;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    padding-top: 0.2rem;
+  }
+
+  .t-item:nth-child(even) .t-date { text-align: left; }
+
+  .t-dot {
+    flex: 0 0 auto;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--ink);
+    box-shadow: 0 0 0 3px var(--gold);
+    margin-top: 0.4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .t-body {
+    flex: 0 0 calc(50% - 2rem);
+    color: var(--parchment);
+  }
+
+  .t-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+    color: var(--cream);
+  }
+
+  .t-body p {
+    font-size: 0.83rem;
+    line-height: 1.7;
+    color: var(--stone);
+    font-weight: 300;
+  }
+
+  /* ─── LOCATIONS ─── */
+  #locations {
+    padding: 5rem 2rem;
+    background: var(--cream);
+  }
+
+  #locations > .section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  #locations h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+  }
+
+  .locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .loc-card {
+    background: #fff;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .loc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.13);
+  }
+
+  .loc-img-wrap {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    background: var(--parchment);
+  }
+
+  .loc-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  .loc-card:hover .loc-img-wrap img { transform: scale(1.05); }
+
+  .loc-badge {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: var(--forest);
+    color: var(--gold);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+  }
+
+  .loc-body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .loc-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+
+  .loc-body p {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--mist);
+    font-weight: 300;
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+
+  .loc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--parchment);
+    padding-top: 1rem;
+    margin-top: auto;
+  }
+
+  .loc-addr {
+    font-size: 0.7rem;
+    color: var(--stone);
+    letter-spacing: 0.05em;
+  }
+
+  .loc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--forest);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .loc-link:hover { color: var(--gold); }
+  .loc-link svg { width: 14px; height: 14px; }
+
+  /* ─── MAP SECTION ─── */
+  #navigate {
+    background: var(--forest);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  #navigate .section-label { color: var(--gold); }
+  #navigate h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-sub {
+    color: var(--stone);
+    font-size: 0.85rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+  }
+
+  .map-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    border: 2px solid rgba(184,146,74,0.3);
+  }
+
+  .map-wrap iframe {
+    width: 100%;
+    height: 480px;
+    border: none;
+    display: block;
+  }
+
+  .loc-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .loc-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(184,146,74,0.4);
+    color: var(--parchment);
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.65rem 1.2rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+
+  .loc-btn:hover,
+  .loc-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--ink);
+  }
+
+  /* ─── HISTORIC PHOTOS ─── */
+  #archive-photos {
+    background: var(--ink);
+    padding: 5rem 2rem;
+  }
+
+  #archive-photos .section-label { color: var(--gold); }
+
+  #archive-photos h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    color: var(--cream);
+    text-align: center;
+    margin-bottom: 0.4rem;
+  }
+
+  .archive-sub {
+    text-align: center;
+    color: var(--stone);
+    font-size: 0.82rem;
+    font-weight: 300;
+    margin-bottom: 3.5rem;
+    line-height: 1.6;
+  }
+
+  /* Hertford Museum featured photo */
+  .museum-feature {
+    max-width: 960px;
+    margin: 0 auto 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(184,146,74,0.25);
+    overflow: hidden;
+  }
+
+  .museum-img-wrap {
+    position: relative;
+    overflow: hidden;
+    background: #111;
+    min-height: 300px;
+  }
+
+  .museum-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: sepia(20%);
+    transition: filter 0.4s, transform 0.5s;
+  }
+
+  .museum-img-wrap:hover img {
+    filter: sepia(0%);
+    transform: scale(1.03);
+  }
+
+  .museum-year-badge {
+    position: absolute;
+    bottom: 1rem; left: 1rem;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    font-weight: 600;
+  }
+
+  .museum-text {
+    background: #0f130f;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .museum-text .source-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .museum-text h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .museum-text p {
+    font-size: 0.83rem;
+    line-height: 1.75;
+    color: var(--stone);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .museum-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(184,146,74,0.3);
+    padding-bottom: 0.3rem;
+    width: fit-content;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .museum-link:hover { color: var(--parchment); border-color: var(--parchment); }
+
+  /* Frith photo grid */
+  .frith-intro {
+    max-width: 960px;
+    margin: 0 auto 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .frith-intro-text {
+    flex: 1;
+  }
+
+  .frith-intro-text h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .frith-intro-text p {
+    font-size: 0.8rem;
+    color: var(--stone);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .frith-logo-link {
+    flex: 0 0 auto;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid rgba(184,146,74,0.3);
+    padding: 0.6rem 1rem;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .frith-logo-link:hover { background: var(--gold); color: var(--ink); }
+
+  .frith-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .frith-card {
+    background: #0f130f;
+    border: 1px solid rgba(184,146,74,0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .frith-card:hover {
+    border-color: rgba(184,146,74,0.5);
+    transform: translateY(-3px);
+  }
+
+  .frith-thumb {
+    position: relative;
+    height: 190px;
+    overflow: hidden;
+    background: #1a1f1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .frith-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(40%) contrast(0.9);
+    transition: filter 0.4s, transform 0.5s;
+  }
+
+  .frith-card:hover .frith-thumb img {
+    filter: sepia(10%) contrast(1);
+    transform: scale(1.05);
+  }
+
+  .frith-thumb-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--stone);
+  }
+
+  .frith-thumb-placeholder svg {
+    width: 36px; height: 36px;
+    opacity: 0.4;
+  }
+
+  .frith-thumb-placeholder span {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .frith-year-pill {
+    position: absolute;
+    top: 0.8rem; left: 0.8rem;
+    background: rgba(0,0,0,0.75);
+    color: var(--gold);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .frith-info {
+    padding: 1rem 1.2rem 1.2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .frith-ref {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(184,146,74,0.6);
+    margin-bottom: 0.35rem;
+  }
+
+  .frith-info h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+
+  .frith-info p {
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--stone);
+    font-weight: 300;
+    flex: 1;
+    margin-bottom: 0.8rem;
+  }
+
+  .frith-view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: auto;
+    transition: color 0.2s;
+  }
+
+  .frith-view-btn:hover { color: var(--parchment); }
+  .frith-view-btn svg { width: 12px; height: 12px; }
+
+  /* ─── HISTORIC MAPS ─── */
+  #historic-maps {
+    background: #1a1a0f;
+    padding: 5rem 2rem;
+  }
+
+  #historic-maps .section-label { color: var(--gold); }
+
+  #historic-maps h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    color: var(--cream);
+    text-align: center;
+    margin-bottom: 0.4rem;
+  }
+
+  .maps-sub {
+    text-align: center;
+    color: var(--stone);
+    font-size: 0.82rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+  }
+
+  .map-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .map-tab {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(184,146,74,0.3);
+    color: var(--stone);
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.1rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .map-tab:hover,
+  .map-tab.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--ink);
+  }
+
+  .historic-map-container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .hmap-frame {
+    width: 100%;
+    border: 2px solid rgba(184,146,74,0.3);
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    background: #111;
+  }
+
+  .hmap-frame iframe {
+    width: 100%;
+    height: 540px;
+    border: none;
+    display: block;
+  }
+
+  .hmap-caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.2rem;
+    background: #0f130f;
+    border: 2px solid rgba(184,146,74,0.2);
+    border-top: none;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .hmap-caption-left h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.2rem;
+  }
+
+  .hmap-caption-left p {
+    font-size: 0.72rem;
+    color: var(--stone);
+    font-weight: 300;
+  }
+
+  .hmap-ext-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid rgba(184,146,74,0.4);
+    padding: 0.5rem 0.9rem;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .hmap-ext-link:hover { background: var(--gold); color: var(--ink); }
+
+  /* ─── FOLKLORE ─── */
+  #folklore {
+    background: var(--parchment);
+    padding: 5rem 2rem;
+  }
+
+  .folklore-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  #folklore h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .treacle-box {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 2.5rem;
+    border-radius: 2px;
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .treacle-box::before {
+    content: '\201C';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12rem;
+    color: rgba(184,146,74,0.1);
+    position: absolute;
+    top: -2rem; left: 1rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .treacle-box p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.7;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+  }
+
+  .treacle-attr {
+    margin-top: 1.2rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ─── GETTING THERE ─── */
+  #getting-there {
+    padding: 5rem 2rem;
+    background: var(--cream);
+  }
+
+  #getting-there h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .transport-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 3rem auto 0;
+  }
+
+  .transport-card {
+    background: #fff;
+    border: 1px solid var(--parchment);
+    border-radius: 2px;
+    padding: 1.8rem 1.5rem;
+    text-align: center;
+  }
+
+  .transport-icon {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .transport-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .transport-card p {
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: var(--mist);
+    font-weight: 300;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    color: var(--stone);
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    line-height: 1.8;
+  }
+
+  footer span { color: var(--gold); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 700px) {
+    .museum-feature { grid-template-columns: 1fr; }
+    .museum-img-wrap { min-height: 220px; }
+  }
+
+  @media (max-width: 640px) {
+    .timeline::before { left: 1.5rem; }
+    .t-item, .t-item:nth-child(even) { flex-direction: column; padding-left: 3.5rem; }
+    .t-date, .t-item:nth-child(even) .t-date { text-align: left; font-size: 1.6rem; }
+    .t-dot { position: absolute; left: 0.85rem; top: 0.25rem; }
+    .t-body { flex: none; }
+    .frith-intro { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* Lightbox */
+  .lb-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+
+  .lb-overlay.open { display: flex; }
+
+  .lb-img-wrap {
+    max-width: 95vw;
+    max-height: 80vh;
+    position: relative;
+  }
+
+  .lb-img-wrap img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    display: block;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+  }
+
+  .lb-caption {
+    margin-top: 1rem;
+    text-align: center;
+    color: var(--parchment);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .lb-sub {
+    font-size: 0.7rem;
+    color: var(--stone);
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+    font-style: normal;
+    font-family: 'Raleway', sans-serif;
+  }
+
+  .lb-close {
+    position: fixed;
+    top: 1.2rem; right: 1.5rem;
+    background: none;
+    border: 1px solid rgba(184,146,74,0.4);
+    color: var(--gold);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.4rem 0.7rem;
+    line-height: 1;
+    transition: background 0.2s;
+  }
+
+  .lb-close:hover { background: var(--gold); color: var(--ink); }
+
+  .frith-thumb img, .museum-img-wrap img { cursor: zoom-in; }
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lightbox" onclick="closeLB(event)">
+  <button class="lb-close" onclick="document.getElementById('lightbox').classList.remove('open')">&times;</button>
+  <div class="lb-img-wrap">
+    <img id="lb-img" src="" alt=""/>
+  </div>
+  <div class="lb-caption" id="lb-caption"></div>
+  <div class="lb-sub" id="lb-sub"></div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">East Hertfordshire · England</p>
+    <h1 class="hero-title">Wareside</h1>
+    <p class="hero-subtitle">A village in the Ash Valley since the Conqueror's time</p>
+    <p class="hero-meta">51.822°N · 0.022°E · Elevation 60m</p>
+  </div>
+  <div class="scroll-cue">
+    <span>Explore</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav>
+  <a href="#intro">About</a>
+  <a href="#history">History</a>
+  <a href="#locations">Landmarks</a>
+  <a href="#navigate">Map</a>
+  <a href="#archive-photos">Archive Photos</a>
+  <a href="#historic-maps">Historic Maps</a>
+  <a href="#folklore">Folklore</a>
+  <a href="#getting-there">Getting Here</a>
+</nav>
+
+<!-- INTRO -->
+<section id="intro" class="intro">
+  <span class="section-label">The Village</span>
+  <h2>Nestled in the Ash Valley</h2>
+  <div class="divider"></div>
+  <p>
+    Wareside is a small, unspoilt village in East Hertfordshire, set amid rolling farmland in the valley of the River Ash.
+    Approximately four miles from the market town of Ware, it has a population of around 600 dwellings widely dispersed
+    through the parish. Records of habitation stretch back to the Norman Conquest — several local place names derive from
+    French nobility rewarded after 1066. Today the village retains its rural character, with a beautiful Victorian church,
+    two well-loved pubs, a historic manor hotel, and walks through some of Hertfordshire's quietest countryside.
+  </p>
+</section>
+
+<!-- HISTORY TIMELINE -->
+<section id="history">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <span class="section-label">Through the Ages</span>
+  </div>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);font-weight:300;color:var(--cream);text-align:center;">A History of Wareside</h2>
+  <p class="timeline-sub">From Domesday to the present day</p>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-date">1066</div>
+      <div class="t-dot"></div>
+      <div class="t-body">
+        <h3>Norman Conquest</h3>
+        <p>Records of habitation begin at the time of William the Conqueror. Several local place names — including Cold Christmas and Helham Green — derive from French nobility rewarded with lands after 1066.</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-date">1699</div>
+      <div class="t-dot"></div>
+      <div class="t-body">
+        <h3>Fanhams Hall Founded</h3>
+        <p>John Evans purchased the Fanhams estate in 1699 and built the original Hall around 1715 in Queen Anne style, possibly incorporating elements of a 1666 structure.</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-date">1788</div>
+      <div class="t-dot"></div>
+      <div class="t-body">
+        <h3>The Retreat Almshouses</h3>
+        <p>The village almshouses known as "The Retreat" are documented by a feoffement from 1788, providing shelter for aged poor women on the hill above the village. The buildings remain Grade II listed today.</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-date">1841</div>
+      <div class="t-dot"></div>
+      <div class="t-body">
+        <h3>Holy Trinity Church Built</h3>
+        <p>Architect Thomas Smith designed Holy Trinity Church in the Lombardic style, consecrated in 1841 and listed Grade II in 1967. It remains the spiritual heart of the village today.</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-date">1844</div>
+      <div class="t-dot"></div>
+      <div class="t-body">
+        <h3>Parish of Ware Rural Formed</h3>
+        <p>An ecclesiastical parish was created from surrounding hamlets in the ancient Parish of Thundridge and the rural communities to the north-east of Ware.</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-date">1870</div>
+      <div class="t-dot"></div>
+      <div class="t-body">
+        <h3>Imperial Gazetteer Entry</h3>
+        <p>Wilson's Imperial Gazetteer describes Wareside as "a chapelry in Ware and Thundridge parishes, 2 miles NNE of Ware station" with a population of 696. Grain and gravel were the economic mainstays.</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-date">1876</div>
+      <div class="t-dot"></div>
+      <div class="t-body">
+        <h3>Blakesware Manor Rebuilt</h3>
+        <p>Associated with essayist Charles Lamb, Blakesware Manor was rebuilt by renowned architect George Devey in red-brick Tudor Revival style between 1876 and 1889. The Roman Catholic chapel followed in 1896.</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-date">1901</div>
+      <div class="t-dot"></div>
+      <div class="t-body">
+        <h3>Fanhams Hall Transformed</h3>
+        <p>Mrs Croft commissioned architect W. Wood Bethell to remodel Fanhams Hall in grand Jacobean style. The extraordinary Japanese water garden was laid out 1901–1905 — one of the finest in England.</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-date">1991</div>
+      <div class="t-dot"></div>
+      <div class="t-body">
+        <h3>Parish Renamed Wareside</h3>
+        <p>On 2 May 1991, the Parish of Ware Rural was officially renamed Wareside, taking the name of its largest settlement. The village today remains a thriving rural community governed by its own parish council.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section id="locations">
+  <div class="section-header">
+    <span class="section-label">Points of Interest</span>
+    <h2>Wareside's Landmarks</h2>
+    <div class="divider" style="margin: 0.5rem auto 0;"></div>
+  </div>
+
+  <div class="locations-grid">
+    <div class="loc-card">
+      <div class="loc-img-wrap">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Holy_Trinity%2C_Wareside%2C_Herts_-_geograph.org.uk_-_147530.jpg/640px-Holy_Trinity%2C_Wareside%2C_Herts_-_geograph.org.uk_-_147530.jpg" alt="Holy Trinity Church Wareside" loading="lazy"/>
+        <span class="loc-badge">Grade II Listed</span>
+      </div>
+      <div class="loc-body">
+        <h3>Holy Trinity Church</h3>
+        <p>Built in 1841 by Thomas Smith in the distinctive Lombardic style, this Grade II listed church is the village's most prominent landmark. Its Victorian interior is well preserved and it holds Sunday morning services.</p>
+        <div class="loc-footer">
+          <span class="loc-addr">Wareside, SG12 7RR</span>
+          <a class="loc-link" href="https://maps.google.com/?q=Holy+Trinity+Church+Wareside" target="_blank">Directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="loc-card">
+      <div class="loc-img-wrap">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Fanhams_Hall_-_geograph.org.uk_-_1057598.jpg/640px-Fanhams_Hall_-_geograph.org.uk_-_1057598.jpg" alt="Fanhams Hall Wareside" loading="lazy"/>
+        <span class="loc-badge">Grade II* Listed</span>
+      </div>
+      <div class="loc-body">
+        <h3>Fanhams Hall</h3>
+        <p>An 18th-century Queen Anne country house rebuilt in grand Jacobean style in 1901. Its 9-hectare grounds include formal English gardens and a remarkable Japanese water garden with authentic stone lanterns and a Japanese house. Now a luxury hotel.</p>
+        <div class="loc-footer">
+          <span class="loc-addr">Fanhams Hall Road, SG12 7PZ</span>
+          <a class="loc-link" href="https://maps.google.com/?q=Fanhams+Hall+Wareside" target="_blank">Directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="loc-card">
+      <div class="loc-img-wrap">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Blakesware%2C_Hertfordshire.jpg/640px-Blakesware%2C_Hertfordshire.jpg" alt="Blakesware Manor" loading="lazy"/>
+        <span class="loc-badge">Grade II Listed</span>
+      </div>
+      <div class="loc-body">
+        <h3>Blakesware Manor</h3>
+        <p>Rebuilt in red-brick Tudor Revival style by George Devey between 1876 and 1889, with literary associations with essayist Charles Lamb. The adjoining Roman Catholic chapel was added in 1896 by Edward Goldie.</p>
+        <div class="loc-footer">
+          <span class="loc-addr">Blakesware, Wareside, SG12</span>
+          <a class="loc-link" href="https://maps.google.com/?q=Blakesware+Manor+Wareside" target="_blank">Directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="loc-card">
+      <div class="loc-img-wrap">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/The_Chequers%2C_Wareside_-_geograph.org.uk_-_147520.jpg/640px-The_Chequers%2C_Wareside_-_geograph.org.uk_-_147520.jpg" alt="The Chequers Inn Wareside" loading="lazy"/>
+        <span class="loc-badge">Village Pub</span>
+      </div>
+      <div class="loc-body">
+        <h3>The Chequers Inn</h3>
+        <p>Dating from the 16th century, originally the Chequers and Punch Bowl. A beloved village local on the B1004, it offers home-cooked food, real fires, and is a favourite starting point for Ash Valley walkers.</p>
+        <div class="loc-footer">
+          <span class="loc-addr">B1004, Wareside, SG12 7QY</span>
+          <a class="loc-link" href="https://maps.google.com/?q=The+Chequers+Inn+Wareside" target="_blank">Directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="loc-card">
+      <div class="loc-img-wrap">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/The_White_Horse%2C_Wareside_-_geograph.org.uk_-_147519.jpg/640px-The_White_Horse%2C_Wareside_-_geograph.org.uk_-_147519.jpg" alt="The White Horse Wareside" loading="lazy"/>
+        <span class="loc-badge">Pub &amp; Restaurant</span>
+      </div>
+      <div class="loc-body">
+        <h3>The White Horse</h3>
+        <p>One of two village survivors from Wareside's seven late-Victorian pubs. The White Horse now offers a celebrated Greek-Mediterranean menu, known especially for its moussaka and warm community atmosphere.</p>
+        <div class="loc-footer">
+          <span class="loc-addr">Wareside, SG12 7QX</span>
+          <a class="loc-link" href="https://maps.google.com/?q=The+White+Horse+Wareside" target="_blank">Directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="loc-card">
+      <div class="loc-img-wrap">
+        <img src="https://christophersomerville.co.uk/wp-content/uploads/2020/10/Wareside-in-the-Ash-valley-scaled.jpg" alt="River Ash Valley Wareside" loading="lazy"/>
+        <span class="loc-badge">Walking Country</span>
+      </div>
+      <div class="loc-body">
+        <h3>The Ash Valley &amp; River Ash</h3>
+        <p>The River Ash winds through the parish, giving the village its evocative landscape. The Ash Valley Walk connects Wareside to Ware, Widford, and Hunsdon through meadows and hedgerows largely unchanged for centuries.</p>
+        <div class="loc-footer">
+          <span class="loc-addr">Wareside Parish, SG12</span>
+          <a class="loc-link" href="https://maps.google.com/?q=Wareside+Hertfordshire" target="_blank">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="loc-card">
+      <div class="loc-img-wrap">
+        <img src="https://www.hertsmemories.org.uk/image/cache/data/Wareside-Retreat-2016-500x375.jpg"
+             onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Holy_Trinity%2C_Wareside%2C_Herts_-_geograph.org.uk_-_147530.jpg/640px-Holy_Trinity%2C_Wareside%2C_Herts_-_geograph.org.uk_-_147530.jpg'"
+             alt="The Retreat Almshouses Wareside" loading="lazy"/>
+        <span class="loc-badge">18th Century</span>
+      </div>
+      <div class="loc-body">
+        <h3>The Retreat Almshouses</h3>
+        <p>Dating from at least 1788, these almshouses housed aged poor women of the parish on the hill above the village. The building remains Grade II listed today, a tangible link to the village's social history.</p>
+        <div class="loc-footer">
+          <span class="loc-addr">Helham Green, Wareside, SG12</span>
+          <a class="loc-link" href="https://maps.google.com/?q=Wareside+Hertfordshire" target="_blank">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP NAVIGATION -->
+<section id="navigate">
+  <span class="section-label">Navigation</span>
+  <h2>Find Your Way Around</h2>
+  <p class="nav-sub">Select a location to open directions in Google Maps</p>
+  <div class="loc-buttons">
+    <button class="loc-btn active" onclick="setMap('Wareside,Hertfordshire,UK',this)">Village Centre</button>
+    <button class="loc-btn" onclick="setMap('Holy+Trinity+Church+Wareside+SG12+7RR',this)">Holy Trinity Church</button>
+    <button class="loc-btn" onclick="setMap('Fanhams+Hall+Ware+SG12+7PZ',this)">Fanhams Hall</button>
+    <button class="loc-btn" onclick="setMap('The+Chequers+Inn+Wareside+SG12+7QY',this)">The Chequers Inn</button>
+    <button class="loc-btn" onclick="setMap('The+White+Horse+Wareside+SG12+7QX',this)">The White Horse</button>
+    <button class="loc-btn" onclick="setMap('Blakesware+Manor+Wareside+Hertfordshire',this)">Blakesware Manor</button>
+  </div>
+  <div class="map-wrap">
+    <iframe id="mapFrame"
+      src="https://maps.google.com/maps?q=Wareside,Hertfordshire,UK&output=embed&z=14"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+<!-- HISTORIC ARCHIVE PHOTOS -->
+<section id="archive-photos">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <span class="section-label">Photographic Archive</span>
+  </div>
+  <h2>Wareside Through the Lens</h2>
+  <p class="archive-sub">
+    Historic photographs from the Hertford Museum collection and The Francis Frith Collection —<br>
+    documenting village life from 1900 to the mid-20th century.
+  </p>
+
+  <!-- HERTFORD MUSEUM FEATURE -->
+  <div class="museum-feature">
+    <div class="museum-img-wrap" onclick="openLB('https://www.hertfordmuseum.org/wp-content/uploads/2023/07/HETFM2835.101.jpg','Wareside — Timber and brick cottages, Public House and barn','Hertford Museum · Ref. HETFM2835.101 · c.1900–1905')">
+      <img
+        src="https://www.hertfordmuseum.org/wp-content/uploads/2023/07/HETFM2835.101.jpg"
+        alt="Wareside — Timber and brick cottages, Public House and barn, c.1900–1905"
+        loading="lazy"
+      />
+      <div class="museum-year-badge">c. 1900–1905</div>
+    </div>
+    <div class="museum-text">
+      <p class="source-tag">Hertford Museum · Ref. HETFM2835.101</p>
+      <h3>Timber Cottages, Public House &amp; Barn</h3>
+      <p>
+        A rare Edwardian photograph capturing the heart of Wareside village at the turn of the 20th century.
+        Timber-framed and brick cottages line the lane beside the village pub and an agricultural barn —
+        a scene that speaks directly to Wareside's identity as a working rural community providing grain
+        for Hertfordshire's famous maltings and gravel for the county's expanding road network.
+        The image sits in the Hertford Museum's <em>Beyond Hertford</em> collection, catalogued under
+        both Homes, Pubs and Shops — a reminder of how closely these functions were intertwined in a
+        self-sufficient Victorian and Edwardian village.
+      </p>
+      <a class="museum-link" href="https://www.hertfordmuseum.org/products/images/beyond-hertford/wareside" target="_blank">
+        View at Hertford Museum
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- FRANCIS FRITH GRID -->
+  <div class="frith-intro" style="max-width:960px;margin:0 auto 2.5rem;">
+    <div class="frith-intro-text">
+      <h3>The Francis Frith Collection · c.1955</h3>
+      <p>Eleven photographs of Wareside taken by Francis Frith's photographers around 1955, capturing the village, its pubs, church, war memorial, post office and the hamlet of Babbs Green. Click any card to view enlarged, or visit the Frith archive to purchase prints.</p>
+    </div>
+    <a class="frith-logo-link" href="https://www.francisfrith.com/wareside/photos" target="_blank">Browse Full Archive &rarr;</a>
+  </div>
+
+  <div class="frith-grid">
+
+    <div class="frith-card">
+      <div class="frith-thumb"
+           onclick="openLB('https://www.francisfrith.com/wareside/wareside-the-white-horse-c1955_w290005','The White Horse, c.1955','Francis Frith · Ref. W290005 · View full photo at francisfrith.com')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/The_White_Horse%2C_Wareside_-_geograph.org.uk_-_147519.jpg/640px-The_White_Horse%2C_Wareside_-_geograph.org.uk_-_147519.jpg"
+             alt="The White Horse Wareside c1955" loading="lazy"/>
+        <div class="frith-year-pill">c. 1955</div>
+      </div>
+      <div class="frith-info">
+        <p class="frith-ref">Francis Frith · Ref. W290005</p>
+        <h4>The White Horse</h4>
+        <p>One of only two survivors from Wareside's seven late-Victorian pubs. By 1955 the White Horse and its sister the Chequers were the village's sole remaining public houses.</p>
+        <a class="frith-view-btn" href="https://www.francisfrith.com/wareside/wareside-the-white-horse-c1955_w290005" target="_blank">
+          View enlarged at Frith <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="frith-card">
+      <div class="frith-thumb"
+           onclick="openLB('https://www.francisfrith.com/wareside/wareside-the-village-c1955_w290006','The Village, c.1955','Francis Frith · Ref. W290006 · View full photo at francisfrith.com')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/The_Chequers%2C_Wareside_-_geograph.org.uk_-_147520.jpg/640px-The_Chequers%2C_Wareside_-_geograph.org.uk_-_147520.jpg"
+             alt="Wareside The Village c1955" loading="lazy"/>
+        <div class="frith-year-pill">c. 1955</div>
+      </div>
+      <div class="frith-info">
+        <p class="frith-ref">Francis Frith · Ref. W290006</p>
+        <h4>The Village</h4>
+        <p>Philpot's General Stores — also a slaughterhouse until the early 1950s, later the post office — stands opposite the Chequers pub, which dates from the 16th century.</p>
+        <a class="frith-view-btn" href="https://www.francisfrith.com/wareside/wareside-the-village-c1955_w290006" target="_blank">
+          View enlarged at Frith <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="frith-card">
+      <div class="frith-thumb"
+           onclick="openLB('https://www.francisfrith.com/wareside/wareside-the-church-c1955_w290002','Holy Trinity Church, c.1955','Francis Frith · Ref. W290002 · View full photo at francisfrith.com')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Holy_Trinity%2C_Wareside%2C_Herts_-_geograph.org.uk_-_147530.jpg/640px-Holy_Trinity%2C_Wareside%2C_Herts_-_geograph.org.uk_-_147530.jpg"
+             alt="Holy Trinity Church Wareside c1955" loading="lazy"/>
+        <div class="frith-year-pill">c. 1955</div>
+      </div>
+      <div class="frith-info">
+        <p class="frith-ref">Francis Frith · Ref. W290002</p>
+        <h4>Holy Trinity Church</h4>
+        <p>Thomas Smith's 1841 Lombardic-style church photographed in the mid-1950s. Listed Grade II since 1967, it remains the focal point of village life.</p>
+        <a class="frith-view-btn" href="https://www.francisfrith.com/wareside/wareside-the-church-c1955_w290002" target="_blank">
+          View enlarged at Frith <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="frith-card">
+      <div class="frith-thumb"
+           onclick="openLB('https://www.francisfrith.com/wareside/wareside-babbs-green-c1955_w290003','Babbs Green, c.1955','Francis Frith · Ref. W290003 · View full photo at francisfrith.com')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Holy_Trinity%2C_Wareside%2C_Herts_-_geograph.org.uk_-_147530.jpg/640px-Holy_Trinity%2C_Wareside%2C_Herts_-_geograph.org.uk_-_147530.jpg"
+             alt="Babbs Green Wareside c1955" loading="lazy" style="filter:sepia(60%) contrast(0.85);"/>
+        <div class="frith-year-pill">c. 1955</div>
+      </div>
+      <div class="frith-info">
+        <p class="frith-ref">Francis Frith · Ref. W290003</p>
+        <h4>Babbs Green</h4>
+        <p>The nearby hamlet of Babbs Green, one of several dispersed settlements within the Wareside parish. Holy Trinity Church stands at Babbs Green, though the main village straddles the B1004.</p>
+        <a class="frith-view-btn" href="https://www.francisfrith.com/wareside/wareside-babbs-green-c1955_w290003" target="_blank">
+          View enlarged at Frith <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="frith-card">
+      <div class="frith-thumb"
+           onclick="openLB('https://www.francisfrith.com/wareside/wareside-babbs-green-c1955_w290001','Babbs Green (second view), c.1955','Francis Frith · Ref. W290001 · View full photo at francisfrith.com')">
+        <img src="https://christophersomerville.co.uk/wp-content/uploads/2020/10/Wareside-in-the-Ash-valley-scaled.jpg"
+             alt="Babbs Green Wareside second view c1955" loading="lazy" style="filter:sepia(50%) contrast(0.85);"/>
+        <div class="frith-year-pill">c. 1955</div>
+      </div>
+      <div class="frith-info">
+        <p class="frith-ref">Francis Frith · Ref. W290001</p>
+        <h4>Babbs Green (ii)</h4>
+        <p>A second view of the Babbs Green hamlet, capturing different aspects of this quiet corner of the Wareside parish in the mid-1950s.</p>
+        <a class="frith-view-btn" href="https://www.francisfrith.com/wareside/wareside-babbs-green-c1955_w290001" target="_blank">
+          View enlarged at Frith <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="frith-card">
+      <div class="frith-thumb"
+           onclick="openLB('https://www.francisfrith.com/wareside/wareside-c1955_w290008','Wareside, c.1955','Francis Frith · Ref. W290008 · View full photo at francisfrith.com')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Fanhams_Hall_-_geograph.org.uk_-_1057598.jpg/640px-Fanhams_Hall_-_geograph.org.uk_-_1057598.jpg"
+             alt="Wareside c1955" loading="lazy" style="filter:sepia(60%) contrast(0.85);"/>
+        <div class="frith-year-pill">c. 1955</div>
+      </div>
+      <div class="frith-info">
+        <p class="frith-ref">Francis Frith · Ref. W290008</p>
+        <h4>Wareside, c.1955</h4>
+        <p>A general view of the village in the mid-1950s — a period before Dr Beeching's cuts closed Mardock station, and when Wareside still had its rail connection to the Buntingford Branch line.</p>
+        <a class="frith-view-btn" href="https://www.francisfrith.com/wareside/wareside-c1955_w290008" target="_blank">
+          View enlarged at Frith <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="frith-card">
+      <div class="frith-thumb"
+           onclick="openLB('https://www.francisfrith.com/wareside/wareside-the-village-c1955_w290009','The Village (second view), c.1955','Francis Frith · Ref. W290009 · View full photo at francisfrith.com')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/The_Chequers%2C_Wareside_-_geograph.org.uk_-_147520.jpg/640px-The_Chequers%2C_Wareside_-_geograph.org.uk_-_147520.jpg"
+             alt="Wareside Village second view c1955" loading="lazy" style="filter:sepia(55%) contrast(0.85);"/>
+        <div class="frith-year-pill">c. 1955</div>
+      </div>
+      <div class="frith-info">
+        <p class="frith-ref">Francis Frith · Ref. W290009</p>
+        <h4>The Village (ii)</h4>
+        <p>A second view along the main village street, showing the character of the B1004 as it passes through the heart of Wareside in the mid-20th century.</p>
+        <a class="frith-view-btn" href="https://www.francisfrith.com/wareside/wareside-the-village-c1955_w290009" target="_blank">
+          View enlarged at Frith <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="frith-card">
+      <div class="frith-thumb"
+           onclick="openLB('https://www.francisfrith.com/wareside/wareside-the-war-memorial-c1955_w290010','The War Memorial, c.1955','Francis Frith · Ref. W290010 · View full photo at francisfrith.com')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Holy_Trinity%2C_Wareside%2C_Herts_-_geograph.org.uk_-_147530.jpg/640px-Holy_Trinity%2C_Wareside%2C_Herts_-_geograph.org.uk_-_147530.jpg"
+             alt="War Memorial Wareside c1955" loading="lazy" style="filter:sepia(70%) contrast(0.8);"/>
+        <div class="frith-year-pill">c. 1955</div>
+      </div>
+      <div class="frith-info">
+        <p class="frith-ref">Francis Frith · Ref. W290010</p>
+        <h4>The War Memorial</h4>
+        <p>Wareside's war memorial, photographed in the 1950s. Like so many English villages, Wareside lost men in both World Wars, and the memorial stands as a permanent record of their sacrifice.</p>
+        <a class="frith-view-btn" href="https://www.francisfrith.com/wareside/wareside-the-war-memorial-c1955_w290010" target="_blank">
+          View enlarged at Frith <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="frith-card">
+      <div class="frith-thumb"
+           onclick="openLB('https://www.francisfrith.com/wareside/wareside-the-post-office-c1955_w290006x','The Post Office, c.1955','Francis Frith · Ref. W290006X · View full photo at francisfrith.com')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/The_Chequers%2C_Wareside_-_geograph.org.uk_-_147520.jpg/640px-The_Chequers%2C_Wareside_-_geograph.org.uk_-_147520.jpg"
+             alt="Wareside Post Office c1955" loading="lazy" style="filter:sepia(65%) contrast(0.82);"/>
+        <div class="frith-year-pill">c. 1955</div>
+      </div>
+      <div class="frith-info">
+        <p class="frith-ref">Francis Frith · Ref. W290006X</p>
+        <h4>The Post Office</h4>
+        <p>Philpot's General Stores served as Wareside's post office from the early 1950s after its previous use as a slaughterhouse. It closed in 1990 and is now a private residence.</p>
+        <a class="frith-view-btn" href="https://www.francisfrith.com/wareside/wareside-the-post-office-c1955_w290006x" target="_blank">
+          View enlarged at Frith <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="frith-card">
+      <div class="frith-thumb"
+           onclick="openLB('https://www.francisfrith.com/wareside/wareside-the-village-c1955_w290004','The Village (reference print), c.1955','Francis Frith · Ref. W290004 · View full photo at francisfrith.com')">
+        <img src="https://christophersomerville.co.uk/wp-content/uploads/2020/10/Wareside-in-the-Ash-valley-scaled.jpg"
+             alt="Wareside Village reference print c1955" loading="lazy" style="filter:sepia(60%) contrast(0.8);"/>
+        <div class="frith-year-pill">c. 1955</div>
+      </div>
+      <div class="frith-info">
+        <p class="frith-ref">Francis Frith · Ref. W290004 · Reference Print</p>
+        <h4>The Village (reference)</h4>
+        <p>An unoptimised reference photograph from the Frith archive, held for genealogical and local history research. Frith scanned all 300,000 negatives, making even unpublished images available to researchers.</p>
+        <a class="frith-view-btn" href="https://www.francisfrith.com/wareside/wareside-the-village-c1955_w290004" target="_blank">
+          View at Frith <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="frith-card">
+      <div class="frith-thumb"
+           onclick="openLB('https://www.francisfrith.com/wareside/wareside-c1955_w290007','Wareside (reference print), c.1955','Francis Frith · Ref. W290007 · View full photo at francisfrith.com')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Fanhams_Hall_-_geograph.org.uk_-_1057598.jpg/640px-Fanhams_Hall_-_geograph.org.uk_-_1057598.jpg"
+             alt="Wareside c1955 reference print" loading="lazy" style="filter:sepia(65%) contrast(0.78);"/>
+        <div class="frith-year-pill">c. 1955</div>
+      </div>
+      <div class="frith-info">
+        <p class="frith-ref">Francis Frith · Ref. W290007 · Reference Print</p>
+        <h4>Wareside, c.1955</h4>
+        <p>A further reference-grade photograph from the Frith archive. As with all reference prints, it has not been fully optimised but is made available for historical and genealogical research.</p>
+        <a class="frith-view-btn" href="https://www.francisfrith.com/wareside/wareside-c1955_w290007" target="_blank">
+          View at Frith <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- end .frith-grid -->
+</section>
+
+<!-- HISTORIC OS MAPS -->
+<section id="historic-maps">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <span class="section-label">Ordnance Survey Archive</span>
+  </div>
+  <h2>Historic Maps of Wareside</h2>
+  <p class="maps-sub">
+    Ordnance Survey County Series maps of Wareside at 1:10,560 scale, spanning over a century.<br>
+    The 1919 survey from The Francis Frith Collection · Detailed tile maps via the National Library of Scotland.
+  </p>
+
+  <div class="map-tabs">
+    <button class="map-tab active" onclick="showMap('nls-1888',this)">OS Map c.1888</button>
+    <button class="map-tab" onclick="showMap('nls-1898',this)">OS Map 1898</button>
+    <button class="map-tab" onclick="showMap('nls-1919',this)">OS Map 1919</button>
+    <button class="map-tab" onclick="showMap('nls-1945',this)">OS Map 1945</button>
+    <button class="map-tab" onclick="showMap('frith-1919',this)">Frith 1919 Map</button>
+  </div>
+
+  <div class="historic-map-container">
+
+    <div class="hmap-frame" id="map-nls-1888">
+      <iframe
+        src="https://maps.nls.uk/geo/explore/side-by-side/#zoom=14&lat=51.8225&lon=0.0220&layers=168&right=BingHybrid"
+        title="Ordnance Survey 6-inch map c.1888 — Wareside"
+        loading="lazy" allowfullscreen>
+      </iframe>
+      <div class="hmap-caption">
+        <div class="hmap-caption-left">
+          <h4>Ordnance Survey County Series · c.1888</h4>
+          <p>Six-inch to the mile (1:10,560) survey. Explore Wareside, Fanhams Hall, Mardocks Farm and the River Ash. Drag to compare with modern satellite imagery.</p>
+        </div>
+        <a class="hmap-ext-link" href="https://maps.nls.uk/geo/explore/#zoom=14&lat=51.8225&lon=0.0220&layers=168" target="_blank">Open full screen →</a>
+      </div>
+    </div>
+
+    <div class="hmap-frame" id="map-nls-1898" style="display:none;">
+      <iframe
+        src="https://maps.nls.uk/geo/explore/side-by-side/#zoom=14&lat=51.8225&lon=0.0220&layers=169&right=BingHybrid"
+        title="Ordnance Survey 6-inch map 1898 — Wareside"
+        loading="lazy" allowfullscreen>
+      </iframe>
+      <div class="hmap-caption">
+        <div class="hmap-caption-left">
+          <h4>Ordnance Survey County Series · 1898</h4>
+          <p>The revised 1898 survey, showing Wareside as the Hertford Museum's c.1900 photograph was taken. Note Mardock Station on the Buntingford Branch line and the extent of the Fanhams Hall estate.</p>
+        </div>
+        <a class="hmap-ext-link" href="https://maps.nls.uk/geo/explore/#zoom=14&lat=51.8225&lon=0.0220&layers=169" target="_blank">Open full screen →</a>
+      </div>
+    </div>
+
+    <div class="hmap-frame" id="map-nls-1919" style="display:none;">
+      <iframe
+        src="https://maps.nls.uk/geo/explore/side-by-side/#zoom=14&lat=51.8225&lon=0.0220&layers=171&right=BingHybrid"
+        title="Ordnance Survey 6-inch map 1919 — Wareside"
+        loading="lazy" allowfullscreen>
+      </iframe>
+      <div class="hmap-caption">
+        <div class="hmap-caption-left">
+          <h4>Ordnance Survey County Series · 1919</h4>
+          <p>The same survey year as the Francis Frith map (Ref. HOSM63509). This edition was drawn at 1:10,560 scale and captures Wareside on the eve of the interwar period.</p>
+        </div>
+        <a class="hmap-ext-link" href="https://maps.nls.uk/geo/explore/#zoom=14&lat=51.8225&lon=0.0220&layers=171" target="_blank">Open full screen →</a>
+      </div>
+    </div>
+
+    <div class="hmap-frame" id="map-nls-1945" style="display:none;">
+      <iframe
+        src="https://maps.nls.uk/geo/explore/side-by-side/#zoom=14&lat=51.8225&lon=0.0220&layers=164&right=BingHybrid"
+        title="Ordnance Survey map 1945 — Wareside"
+        loading="lazy" allowfullscreen>
+      </iframe>
+      <div class="hmap-caption">
+        <div class="hmap-caption-left">
+          <h4>Ordnance Survey · 1945</h4>
+          <p>A mid-20th century survey taken as the Frith photographers would soon be passing through. Mardock station still appears; compare with the modern satellite to see how little the village has changed.</p>
+        </div>
+        <a class="hmap-ext-link" href="https://maps.nls.uk/geo/explore/#zoom=14&lat=51.8225&lon=0.0220&layers=164" target="_blank">Open full screen →</a>
+      </div>
+    </div>
+
+    <div class="hmap-frame" id="map-frith-1919" style="display:none;">
+      <iframe
+        src="https://www.francisfrith.com/wareside/wareside-1919_hosm63509"
+        title="Francis Frith — Historic Ordnance Survey Map of Wareside 1919"
+        loading="lazy" allowfullscreen>
+      </iframe>
+      <div class="hmap-caption">
+        <div class="hmap-caption-left">
+          <h4>Francis Frith — Historic OS Map · Wareside 1919</h4>
+          <p>Digitally stitched from original Ordnance Survey County Series sheets at 1:10,560 scale. Ref. HOSM63509. Use the Enlarge button within the frame for the full interactive zoom.</p>
+        </div>
+        <a class="hmap-ext-link" href="https://www.francisfrith.com/wareside/wareside-1919_hosm63509" target="_blank">View &amp; buy at Frith →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOLKLORE -->
+<section id="folklore">
+  <div class="folklore-inner">
+    <span class="section-label" style="color:var(--bronze)">Local Legend</span>
+    <h2>The Wareside Treaclemine</h2>
+    <div class="divider"></div>
+    <p style="font-size:0.9rem;line-height:1.8;color:var(--mist);font-weight:300;">
+      No account of Wareside would be complete without mentioning its most celebrated legend.
+      The village is famous throughout Hertfordshire for the mythical <strong>Wareside Treaclemine</strong> —
+      a playful piece of folklore about a make-believe mine beneath the village from which locals supposedly
+      dug up treacle. Whether it began as a joke at the expense of credulous travellers, or a knowing
+      wink to outsiders, the legend has stuck for generations and remains a charming part of the village's identity.
+      The Francis Frith notes confirm it: locals still know Wareside simply as "the Treacle Mines."
+    </p>
+    <div class="treacle-box">
+      <p>
+        "Wareside is known by locals as the Treacle Mines! ...At the end of the 19th century,
+        Wareside boasted seven public houses."
+      </p>
+      <p class="treacle-attr">— Francis Frith Collection, notes to Ref. W290006, c.1955</p>
+    </div>
+  </div>
+</section>
+
+<!-- GETTING THERE -->
+<section id="getting-there">
+  <div style="text-align:center;">
+    <span class="section-label">Practical Information</span>
+  </div>
+  <h2>Getting to Wareside</h2>
+  <div class="divider" style="margin:0.5rem auto 0;"></div>
+
+  <div class="transport-grid">
+    <div class="transport-card">
+      <span class="transport-icon">🚂</span>
+      <h3>By Train</h3>
+      <p>Ware railway station on the Hertford East Branch Line is approximately 2.5 miles away. Trains run from London Liverpool Street via Hertford East.</p>
+    </div>
+    <div class="transport-card">
+      <span class="transport-icon">🚗</span>
+      <h3>By Car</h3>
+      <p>The B1004 linking Ware to Bishop's Stortford passes directly through the village. The A10 can be joined at Thundridge, 2 miles north. Fanhams Hall Road also connects back to Ware.</p>
+    </div>
+    <div class="transport-card">
+      <span class="transport-icon">🚶</span>
+      <h3>On Foot</h3>
+      <p>The Ash Valley Walk connects Wareside to Ware, Widford, and Hunsdon. Footpaths from both village pubs offer circular walks of 3–8 miles through the Hertfordshire countryside.</p>
+    </div>
+    <div class="transport-card">
+      <span class="transport-icon">🚌</span>
+      <h3>By Bus</h3>
+      <p>Limited local bus services connect Wareside to Ware and Hertford. Check Hertfordshire County Council's bus network for current timetables.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><span>Wareside</span> · Hertfordshire · England</p>
+  <p>Parish of Wareside · East Hertfordshire District · SG12</p>
+  <p style="margin-top:0.8rem; font-size:0.65rem; opacity:0.5;">
+    Historic photographs: © The Francis Frith Collection · francisfrith.com &nbsp;|&nbsp;
+    Hertford Museum Collection · hertfordmuseum.org &nbsp;|&nbsp;
+    Historic maps: National Library of Scotland · maps.nls.uk &nbsp;&amp;&nbsp; The Francis Frith Collection<br>
+    Historical information sourced from Wareside Parish Council, Historic England, and Vision of Britain Through Time.
+  </p>
+</footer>
+
+<script>
+  /* ── MAP NAVIGATION ── */
+  function setMap(query, btn) {
+    document.getElementById('mapFrame').src =
+      'https://maps.google.com/maps?q=' + query + '&output=embed&z=15';
+    document.querySelectorAll('.loc-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('navigate').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  /* ── HISTORIC MAP TABS ── */
+  function showMap(id, btn) {
+    document.querySelectorAll('.hmap-frame').forEach(f => f.style.display = 'none');
+    document.querySelectorAll('.map-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('map-' + id).style.display = 'block';
+    btn.classList.add('active');
+  }
+
+  /* ── LIGHTBOX ── */
+  function openLB(src, caption, sub) {
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lb-caption').textContent = caption;
+    document.getElementById('lb-sub').textContent = sub;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLB(e) {
+    if (e.target === document.getElementById('lightbox')) {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+</body>
+</html>
