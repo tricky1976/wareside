@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#2d4a2d"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <title>Wareside · Hertfordshire</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -50,9 +53,14 @@
     background-position: center 60%;
     opacity: 0.45;
     transform: scale(1.05);
+    -webkit-animation: heroZoom 20s ease-in-out infinite alternate;
     animation: heroZoom 20s ease-in-out infinite alternate;
   }
 
+  @-webkit-keyframes heroZoom {
+    from { -webkit-transform: scale(1.05); transform: scale(1.05); }
+    to   { -webkit-transform: scale(1.12); transform: scale(1.12); }
+  }
   @keyframes heroZoom {
     from { transform: scale(1.05); }
     to   { transform: scale(1.12); }
@@ -67,9 +75,14 @@
     position: relative;
     text-align: center;
     padding: 2rem;
+    -webkit-animation: fadeUp 1.2s ease both;
     animation: fadeUp 1.2s ease both;
   }
 
+  @-webkit-keyframes fadeUp {
+    from { opacity: 0; -webkit-transform: translateY(30px); transform: translateY(30px); }
+    to   { opacity: 1; -webkit-transform: translateY(0);    transform: translateY(0); }
+  }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -129,6 +142,10 @@
     animation: bounce 2s ease infinite;
   }
 
+  @-webkit-keyframes bounce {
+    0%, 100% { -webkit-transform: translateX(-50%) translateY(0);    transform: translateX(-50%) translateY(0); }
+    50%       { -webkit-transform: translateX(-50%) translateY(8px);  transform: translateX(-50%) translateY(8px); }
+  }
   @keyframes bounce {
     0%, 100% { transform: translateX(-50%) translateY(0); }
     50%       { transform: translateX(-50%) translateY(8px); }
@@ -138,17 +155,22 @@
 
   /* ─── NAV ─── */
   nav {
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 100;
     background: var(--forest);
     border-bottom: 2px solid var(--gold);
+    display: -webkit-flex;
     display: flex;
+    -webkit-align-items: center;
     align-items: center;
+    -webkit-justify-content: center;
     justify-content: center;
     gap: 0;
     padding: 0;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
 
@@ -1091,13 +1113,18 @@
 
   .lb-close {
     position: fixed;
-    top: 1.2rem; right: 1.5rem;
+    top: 0.8rem; right: 1rem;
     background: none;
     border: 1px solid rgba(184,146,74,0.4);
     color: var(--gold);
     font-size: 1.2rem;
     cursor: pointer;
-    padding: 0.4rem 0.7rem;
+    /* 44×44px minimum touch target */
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     line-height: 1;
     transition: background 0.2s;
   }
@@ -1105,6 +1132,58 @@
   .lb-close:hover { background: var(--gold); color: var(--ink); }
 
   .frith-thumb img, .museum-img-wrap img { cursor: zoom-in; }
+
+  /* ─── CROSS-BROWSER & RESPONSIVE FIXES ─── */
+
+  /* hero-content animation with webkit prefix */
+  .hero-content { -webkit-animation: fadeUp 1.2s ease both; }
+  .scroll-cue   { -webkit-animation: bounce 2s ease infinite; }
+  .hero-bg      { -webkit-animation: heroZoom 20s ease-in-out infinite alternate; }
+
+  /* Ensure all images are responsive */
+  img { max-width: 100%; height: auto; }
+  .loc-img-wrap img, .frith-thumb img, .museum-img-wrap img { height: 100%; }
+
+  /* iframe max-width safety */
+  iframe { max-width: 100%; }
+
+  /* Ensure loc-btn and walk-btn meet 44px touch target */
+  .loc-btn {
+    min-height: 44px;
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+  .walk-btn     { min-height: 44px; }
+  .walk-tab     { min-height: 44px; }
+  .map-tab      { min-height: 44px; }
+  .hmap-ext-link { min-height: 44px; -webkit-align-items: center; align-items: center; display: -webkit-inline-flex; display: inline-flex; }
+  .walk-gmaps-link { min-height: 44px; -webkit-align-items: center; align-items: center; }
+
+  /* Reduce iframe heights on narrow mobile */
+  @media (max-width: 500px) {
+    .map-wrap iframe        { height: 320px; }
+    .hmap-frame iframe      { height: 360px; }
+    .walk-map-wrap iframe   { height: 300px; }
+  }
+
+  /* Very small screens (320px) — prevent grid overflow */
+  @media (max-width: 360px) {
+    .locations-grid { grid-template-columns: 1fr; }
+    .frith-grid     { grid-template-columns: 1fr; }
+    .transport-grid { grid-template-columns: 1fr 1fr; }
+    .walks-grid     { grid-template-columns: 1fr; }
+    .walk-pills     { gap: 0.3rem; }
+    .walk-btn       { font-size: 0.58rem; padding: 0.5rem 0.7rem; }
+    .hero-title     { font-size: clamp(2.8rem, 15vw, 5rem); }
+  }
+
+  /* Safe-area insets for iPhone notch/Dynamic Island */
+  @supports (padding: max(0px)) {
+    nav { padding-left: max(0px, env(safe-area-inset-left)); padding-right: max(0px, env(safe-area-inset-right)); }
+    footer { padding-bottom: max(2.5rem, calc(2.5rem + env(safe-area-inset-bottom))); }
+  }
 
   /* ─── CIRCULAR WALKS ─── */
   #walks {
