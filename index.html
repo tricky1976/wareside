@@ -1105,6 +1105,307 @@
   .lb-close:hover { background: var(--gold); color: var(--ink); }
 
   .frith-thumb img, .museum-img-wrap img { cursor: zoom-in; }
+
+  /* ─── CIRCULAR WALKS ─── */
+  #walks {
+    background: var(--cream);
+    padding: 5rem 2rem;
+  }
+
+  #walks h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .walks-sub {
+    text-align: center;
+    color: var(--mist);
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 3.5rem;
+  }
+
+  .walks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto 4rem;
+  }
+
+  .walk-card {
+    background: #fff;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+
+  .walk-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+  }
+
+  .walk-diff-bar { height: 4px; }
+  .walk-diff-bar.easy     { background: #4a8a4a; }
+  .walk-diff-bar.moderate { background: #c8882a; }
+
+  .walk-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+
+  .walk-number {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.35rem;
+  }
+
+  .walk-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .walk-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .walk-pill {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.7rem;
+    border-radius: 2px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .pill-easy     { background: rgba(74,138,74,0.12); color: #2d6b2d; }
+  .pill-moderate { background: rgba(200,136,42,0.13); color: #7a4e0a; }
+  .pill-dist     { background: var(--parchment); color: var(--ink); }
+  .pill-time     { background: var(--parchment); color: var(--ink); }
+  .pill-dog      { background: rgba(45,74,45,0.1); color: var(--forest); }
+
+  .walk-start {
+    font-size: 0.72rem;
+    color: var(--stone);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    line-height: 1.4;
+  }
+
+  .walk-start svg { flex-shrink: 0; margin-top: 0.1rem; }
+
+  .walk-body > p {
+    font-size: 0.83rem;
+    line-height: 1.75;
+    color: var(--mist);
+    font-weight: 300;
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+
+  .walk-highlights {
+    list-style: none;
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .walk-highlights li {
+    font-size: 0.75rem;
+    color: var(--mist);
+    font-weight: 300;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .walk-highlights li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 0.45em;
+  }
+
+  .walk-actions {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--parchment);
+  }
+
+  .walk-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.63rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.55rem 0.9rem;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .walk-btn-map {
+    background: var(--forest);
+    color: var(--parchment);
+    border: 1px solid var(--forest);
+  }
+
+  .walk-btn-map:hover { background: var(--moss); border-color: var(--moss); }
+
+  .walk-btn-gmaps {
+    background: transparent;
+    color: var(--forest);
+    border: 1px solid rgba(45,74,45,0.35);
+  }
+
+  .walk-btn-gmaps:hover { background: var(--forest); color: var(--cream); border-color: var(--forest); }
+
+  .walk-btn svg { width: 12px; height: 12px; }
+
+  /* Walk map panel */
+  .walk-map-panel {
+    max-width: 960px;
+    margin: 0 auto;
+    background: var(--forest);
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  }
+
+  .walk-map-header {
+    padding: 1.5rem 2rem 1rem;
+    border-bottom: 1px solid rgba(184,146,74,0.2);
+  }
+
+  .walk-map-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 0.25rem;
+  }
+
+  .walk-map-header p {
+    font-size: 0.72rem;
+    color: var(--stone);
+    font-weight: 300;
+  }
+
+  .walk-map-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: rgba(0,0,0,0.15);
+  }
+
+  .walk-tab {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(184,146,74,0.3);
+    color: var(--stone);
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.55rem 1rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .walk-tab:hover, .walk-tab.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--ink);
+  }
+
+  .walk-map-wrap iframe {
+    width: 100%;
+    height: 440px;
+    border: none;
+    display: block;
+  }
+
+  .walk-map-caption {
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    background: rgba(0,0,0,0.2);
+  }
+
+  .walk-map-caption p {
+    font-size: 0.72rem;
+    color: var(--stone);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .walk-map-caption strong { color: var(--parchment); }
+
+  .walk-gmaps-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid rgba(184,146,74,0.4);
+    padding: 0.5rem 0.9rem;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+    font-weight: 600;
+  }
+
+  .walk-gmaps-link:hover { background: var(--gold); color: var(--ink); }
+
+  .os-note {
+    max-width: 960px;
+    margin: 1.5rem auto 0;
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--stone);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 560px) {
+    .walks-grid { grid-template-columns: 1fr; }
+    .walk-map-header, .walk-map-tabs, .walk-map-caption { padding-left: 1rem; padding-right: 1rem; }
+  }
 </style>
 </head>
 <body>
@@ -1141,6 +1442,7 @@
   <a href="#history">History</a>
   <a href="#locations">Landmarks</a>
   <a href="#navigate">Map</a>
+  <a href="#walks">Walks</a>
   <a href="#archive-photos">Archive Photos</a>
   <a href="#historic-maps">Historic Maps</a>
   <a href="#folklore">Folklore</a>
@@ -1382,6 +1684,201 @@
       allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
     </iframe>
   </div>
+</section>
+
+<!-- CIRCULAR WALKS -->
+<section id="walks">
+  <div style="text-align:center; margin-bottom:1rem;">
+    <span class="section-label">On Foot</span>
+  </div>
+  <h2>Local Circular Walks</h2>
+  <div class="divider" style="margin:0.5rem auto 1.5rem;"></div>
+  <p class="walks-sub">
+    Four routes through Wareside's fields, riverbanks and ancient woodland — from a gentle riverside ramble to a half-day adventure.<br>
+    All are circular, starting and finishing at the same point. OS Explorer 194 recommended for all routes.
+  </p>
+
+  <div class="walks-grid">
+
+    <!-- WALK 1 -->
+    <div class="walk-card">
+      <div class="walk-diff-bar easy"></div>
+      <div class="walk-body">
+        <p class="walk-number">Walk 1</p>
+        <h3>Blakesware Manor &amp; Buckney Wood</h3>
+        <div class="walk-pills">
+          <span class="walk-pill pill-easy">Easy</span>
+          <span class="walk-pill pill-dist">5 miles · 8 km</span>
+          <span class="walk-pill pill-time">~2.5 hours</span>
+          <span class="walk-pill pill-dog">🐕 Dog Friendly</span>
+        </div>
+        <div class="walk-start">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          Start: The Chequers Inn, Wareside, SG12 7QY &nbsp;·&nbsp; OS ref TL 396 156
+        </div>
+        <p>Cross the River Ash via the old Buntingford Branch line path, then follow quiet green lanes through Upper Crackney to the edge of Blakesware Estate. Cross the Nimney Bourne stream at Baker's End, pass through Buckney Wood with its ancient coppiced ash stools, and return through Reeves Green. Almost entirely flat with no serious hills.</p>
+        <ul class="walk-highlights">
+          <li>Public footpath through Blakesware Estate grounds</li>
+          <li>Follows the course of the old Buntingford Branch railway</li>
+          <li>Ancient multi-stemmed ash coppice in Buckney Wood</li>
+          <li>Nimney Bourne stream and River Ash crossings</li>
+          <li>Finish at The Chequers or White Horse for refreshments</li>
+        </ul>
+        <div class="walk-actions">
+          <button class="walk-btn walk-btn-map" onclick="setWalkMap('https://maps.google.com/maps?q=The+Chequers+Inn+Wareside+SG12+7QY&output=embed&z=14','walk1-caption',this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            View Start on Map
+          </button>
+          <a class="walk-btn walk-btn-gmaps" href="https://www.google.com/maps/dir/The+Chequers,+Wareside,+SG12+7QY/51.8220,0.0270/51.8350,0.0360/51.8330,0.0140/51.8220,0.0170/The+Chequers,+Wareside,+SG12+7QY" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Plan in Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WALK 2 -->
+    <div class="walk-card">
+      <div class="walk-diff-bar moderate"></div>
+      <div class="walk-body">
+        <p class="walk-number">Walk 2</p>
+        <h3>Barrow Hill &amp; the River Ash</h3>
+        <div class="walk-pills">
+          <span class="walk-pill pill-moderate">Easy / Moderate</span>
+          <span class="walk-pill pill-dist">4.75 miles · 7.6 km</span>
+          <span class="walk-pill pill-time">~2.5 hours</span>
+          <span class="walk-pill pill-dog">🐕 Dog Friendly</span>
+        </div>
+        <div class="walk-start">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          Start: The Chequers Inn, Wareside, SG12 7QY &nbsp;·&nbsp; OS ref TL 396 156
+        </div>
+        <p>Head north through the dispersed hamlet of Babbs Green, then climb to the summit of Barrow Hill for wide panoramic views across the Ash Valley. Descend to the River Ash and follow the winding riverbank south before returning through open meadows to Wareside. One noticeable climb to Barrow Hill — otherwise gentle, rolling countryside.</p>
+        <ul class="walk-highlights">
+          <li>Panoramic views over the Ash Valley from Barrow Hill</li>
+          <li>Babbs Green hamlet — one of Wareside's oldest settlements</li>
+          <li>Riverside walking along the meandering River Ash</li>
+          <li>Holy Trinity Church at Babbs Green passes en route</li>
+          <li>Can be combined with Walk 1 for an 8.75-mile full-day route</li>
+        </ul>
+        <div class="walk-actions">
+          <button class="walk-btn walk-btn-map" onclick="setWalkMap('https://maps.google.com/maps?q=Babbs+Green+Wareside+Hertfordshire&output=embed&z=13','walk2-caption',this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            View Start on Map
+          </button>
+          <a class="walk-btn walk-btn-gmaps" href="https://www.google.com/maps/dir/The+Chequers,+Wareside,+SG12+7QY/Babbs+Green,+Wareside,+Hertfordshire/51.8290,0.0222/51.8250,0.0210/The+Chequers,+Wareside,+SG12+7QY" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Plan in Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WALK 3 -->
+    <div class="walk-card">
+      <div class="walk-diff-bar moderate"></div>
+      <div class="walk-body">
+        <p class="walk-number">Walk 3</p>
+        <h3>Ware East Loop &nbsp;<span style="font-size:0.75rem;color:var(--stone);font-family:'Raleway',sans-serif;font-weight:300;">(via Wareside)</span></h3>
+        <div class="walk-pills">
+          <span class="walk-pill pill-moderate">Moderate</span>
+          <span class="walk-pill pill-dist">5.7 miles · 9.1 km</span>
+          <span class="walk-pill pill-time">~3 hours</span>
+          <span class="walk-pill pill-dog">🐕 Dog Friendly</span>
+        </div>
+        <div class="walk-start">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          Start: East Ware (Bridleway 7 junction), Ware, SG12 &nbsp;·&nbsp; w3w: charm.frogs.soils
+        </div>
+        <p>From the east side of Ware, follow Bridleway 7 through open countryside overlooking the Ash Valley before descending to follow the river through Wareside — crossing the River Ash six times. Stop at The Chequers Inn, trace the old Buntingford Branch railway line and return via Bridleway 11. Some sections can be muddy after rain; cattle may be encountered.</p>
+        <ul class="walk-highlights">
+          <li>River Ash crossed six times along the route</li>
+          <li>Follows the trackbed of the former Buntingford Branch line</li>
+          <li>Refreshment stop at The Chequers Inn, Wareside</li>
+          <li>Wide open countryside views above the Ash Valley</li>
+          <li>GPX/KML download available from Hertfordshire Walker blog</li>
+        </ul>
+        <div class="walk-actions">
+          <button class="walk-btn walk-btn-map" onclick="setWalkMap('https://maps.google.com/maps?q=Ware+Hertfordshire&output=embed&z=13','walk3-caption',this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            View Start on Map
+          </button>
+          <a class="walk-btn walk-btn-gmaps" href="https://www.google.com/maps/dir/Ware,+Hertfordshire,+SG12/The+Chequers,+Wareside,+SG12+7QY/Ware,+Hertfordshire,+SG12" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Plan in Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WALK 4 -->
+    <div class="walk-card">
+      <div class="walk-diff-bar moderate"></div>
+      <div class="walk-body">
+        <p class="walk-number">Walk 4</p>
+        <h3>Widford &amp; Cold Christmas Grand Circuit</h3>
+        <div class="walk-pills">
+          <span class="walk-pill pill-moderate">Moderate</span>
+          <span class="walk-pill pill-dist">9.5 miles · 15.4 km</span>
+          <span class="walk-pill pill-time">~5 hours</span>
+          <span class="walk-pill pill-dog">🐕 Dog Friendly</span>
+        </div>
+        <div class="walk-start">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          Start: Widford Church (St John the Baptist), SG12 8RL &nbsp;·&nbsp; 51.8221°N, 0.0473°E
+        </div>
+        <p>A rewarding half-day circuit following the Hertfordshire Way from Widford's medieval church, crossing the River Ash into Wareside and on through Babbs Green. Traverse ancient Buckney Wood, reach the tiny lost hamlet of Cold Christmas, cross the River Rib, then return via the Harcamlow Way. Crosses the Greenwich Meridian — twice. Park in lay-bys west of Widford church on the B1004.</p>
+        <ul class="walk-highlights">
+          <li>Widford's 12th–15th century church — a beautiful starting point</li>
+          <li>Crosses the Greenwich Meridian (0° longitude) twice</li>
+          <li>Cold Christmas — a tiny, ancient hamlet with a curious name</li>
+          <li>Follows both the Hertfordshire Way and the Harcamlow Way</li>
+          <li>Rivers Ash and Rib both feature; 600 ft (182 m) total ascent</li>
+        </ul>
+        <div class="walk-actions">
+          <button class="walk-btn walk-btn-map" onclick="setWalkMap('https://maps.google.com/maps?q=Widford+Church+SG12+8RL&output=embed&z=13','walk4-caption',this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            View Start on Map
+          </button>
+          <a class="walk-btn walk-btn-gmaps" href="https://www.google.com/maps/dir/St+John+the+Baptist+Church+Widford+SG12+8RL/Wareside+Hertfordshire+SG12/Cold+Christmas+Hertfordshire/St+John+the+Baptist+Church+Widford+SG12+8RL" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Plan in Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end .walks-grid -->
+
+  <!-- WALK MAP PANEL -->
+  <div class="walk-map-panel">
+    <div class="walk-map-header">
+      <h3>Walk Start Points &amp; Routes</h3>
+      <p>Select a walk below to see its start point. Use "Plan in Google Maps" on each card for turn-by-turn walking directions.</p>
+    </div>
+    <div class="walk-map-tabs">
+      <button class="walk-tab active" onclick="setWalkMap('https://maps.google.com/maps?q=The+Chequers+Inn+Wareside+SG12+7QY&output=embed&z=14','walk1-caption',this)">Walk 1 — Blakesware Loop</button>
+      <button class="walk-tab" onclick="setWalkMap('https://maps.google.com/maps?q=Babbs+Green+Wareside+Hertfordshire&output=embed&z=13','walk2-caption',this)">Walk 2 — Barrow Hill</button>
+      <button class="walk-tab" onclick="setWalkMap('https://maps.google.com/maps?q=Ware+Hertfordshire&output=embed&z=13','walk3-caption',this)">Walk 3 — Ware East Loop</button>
+      <button class="walk-tab" onclick="setWalkMap('https://maps.google.com/maps?q=Widford+Church+SG12+8RL&output=embed&z=13','walk4-caption',this)">Walk 4 — Widford Circuit</button>
+    </div>
+    <div class="walk-map-wrap">
+      <iframe id="walkMapFrame"
+        src="https://maps.google.com/maps?q=The+Chequers+Inn+Wareside+SG12+7QY&output=embed&z=14"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <div class="walk-map-caption" id="walkMapCaption">
+      <p id="walk1-caption"><strong>Walk 1 — Blakesware Manor &amp; Buckney Wood</strong> · Start: The Chequers Inn, Wareside SG12 7QY · 5 miles · Easy</p>
+      <a class="walk-gmaps-link" id="walkGmapsLink" href="https://www.google.com/maps/dir/The+Chequers,+Wareside,+SG12+7QY/51.8220,0.0270/51.8350,0.0360/51.8330,0.0140/51.8220,0.0170/The+Chequers,+Wareside,+SG12+7QY" target="_blank">
+        Open route in Google Maps →
+      </a>
+    </div>
+  </div>
+
+  <p class="os-note">
+    Route descriptions sourced from Christopher Somerville, Hertfordshire Walker, and Walking Britain. Maps are approximate — always carry OS Explorer 194 (Hertford &amp; Bishop's Stortford) for definitive route-finding. Conditions may vary seasonally; paths can be muddy after rain. Livestock may be present on all routes.
+  </p>
 </section>
 
 <!-- HISTORIC ARCHIVE PHOTOS -->
@@ -1793,6 +2290,39 @@
 </footer>
 
 <script>
+  /* ── WALK MAP ── */
+  const walkCaptions = {
+    'walk1-caption': {
+      text: '<strong>Walk 1 — Blakesware Manor &amp; Buckney Wood</strong> · Start: The Chequers Inn, Wareside SG12 7QY · 5 miles · Easy',
+      href: 'https://www.google.com/maps/dir/The+Chequers,+Wareside,+SG12+7QY/51.8220,0.0270/51.8350,0.0360/51.8330,0.0140/51.8220,0.0170/The+Chequers,+Wareside,+SG12+7QY'
+    },
+    'walk2-caption': {
+      text: '<strong>Walk 2 — Barrow Hill &amp; the River Ash</strong> · Start: The Chequers Inn, Wareside SG12 7QY · 4.75 miles · Easy/Moderate',
+      href: 'https://www.google.com/maps/dir/The+Chequers,+Wareside,+SG12+7QY/Babbs+Green,+Wareside,+Hertfordshire/51.8290,0.0222/51.8250,0.0210/The+Chequers,+Wareside,+SG12+7QY'
+    },
+    'walk3-caption': {
+      text: '<strong>Walk 3 — Ware East Loop</strong> · Start: East Ware (Bridleway 7), Ware SG12 · 5.7 miles · Moderate',
+      href: 'https://www.google.com/maps/dir/Ware,+Hertfordshire,+SG12/The+Chequers,+Wareside,+SG12+7QY/Ware,+Hertfordshire,+SG12'
+    },
+    'walk4-caption': {
+      text: '<strong>Walk 4 — Widford &amp; Cold Christmas Grand Circuit</strong> · Start: Widford Church, SG12 8RL · 9.5 miles · Moderate',
+      href: 'https://www.google.com/maps/dir/St+John+the+Baptist+Church+Widford+SG12+8RL/Wareside+Hertfordshire+SG12/Cold+Christmas+Hertfordshire/St+John+the+Baptist+Church+Widford+SG12+8RL'
+    }
+  };
+
+  function setWalkMap(src, captionId, btn) {
+    document.getElementById('walkMapFrame').src = src;
+    const data = walkCaptions[captionId];
+    if (data) {
+      document.getElementById('walkMapCaption').querySelector('p').innerHTML = data.text;
+      document.getElementById('walkGmapsLink').href = data.href;
+    }
+    document.querySelectorAll('.walk-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.walk-btn-map').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    document.getElementById('walks').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
   /* ── MAP NAVIGATION ── */
   function setMap(query, btn) {
     document.getElementById('mapFrame').src =
